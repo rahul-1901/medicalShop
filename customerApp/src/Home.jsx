@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Users } from 'lucide-react'
 
 const Home = () => {
     const [userInfo, setUserInfo] = useState([]);
@@ -40,7 +41,7 @@ const Home = () => {
         <>
             <div className=''>
                 <div className='flex flex-col justify-center items-center mt-10 gap-5 mb-10'>
-                    <div className='flex w-[80vw] gap-4'>
+                    <div className='flex w-[80vw] gap-4 justify-center'>
                         <input
                             type="text"
                             name="customer"
@@ -52,7 +53,7 @@ const Home = () => {
                         <button onClick={searchUser} className='bg-green-300 hover:bg-green-400 cursor-pointer transition duration-300 rounded-md py-1 px-4 text-xl text-white'>Search</button>
                     </div>
 
-                    {searchOn ? (<div className="bg-white rounded-lg shadow w-[80vw]">
+                    {searchOn ? (<div className="bg-white rounded-lg shadow w-[90vw]">
                         <div className="overflow-x-auto">
                             <div className="px-6 py-4 border-b border-gray-200">
                                 <h2 className="text-xl font-semibold text-gray-800">Searched Customer</h2>
@@ -69,6 +70,9 @@ const Home = () => {
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Prescribed Medicine
                                         </th>
+                                        <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                                            Date
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
@@ -84,6 +88,9 @@ const Home = () => {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {oneUser.medicine}
                                         </td>
+                                        <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                                            {new Date(item.date).toLocaleDateString()}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -93,10 +100,10 @@ const Home = () => {
                         <div></div>
                     )}
 
-                    <div className="bg-white rounded-lg shadow w-[80vw]">
+                    <div className="bg-white rounded-lg shadow w-[90vw]">
                         <div className="overflow-x-auto">
                             <div className="px-6 py-4 border-b border-gray-200">
-                                <h2 className="text-xl font-semibold text-gray-800">Customer Records</h2>
+                                <h2 className="text-xl font-semibold text-gray-800 flex items-center gap-1"> <Users className="text-blue-600" />Customer Records</h2>
                             </div>
                             <table className="min-w-full divide-y divide-gray-200">
                                 <thead className="bg-gray-50">
@@ -109,6 +116,9 @@ const Home = () => {
                                         </th>
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Prescribed Medicine
+                                        </th>
+                                        <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                                            Date
                                         </th>
                                     </tr>
                                 </thead>
@@ -125,6 +135,9 @@ const Home = () => {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {item.medicine}
+                                            </td>
+                                            <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                                                {new Date(item.date).toLocaleDateString()}
                                             </td>
                                         </tr>
                                     ))}
