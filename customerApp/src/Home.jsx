@@ -7,7 +7,7 @@ const Home = () => {
     const [searchedUser, setSearchedUser] = useState({
         name: ""
     })
-    const [oneUser, setOneUser] = useState({});
+    const [oneUser, setOneUser] = useState([]);
     const [searchOn, setSearchOn] = useState(false);
     const [newUser, setNewUser] = useState({
         name: "",
@@ -61,7 +61,7 @@ const Home = () => {
     return (
         <>
             <div className=''>
-                <div className='flex flex-col justify-center items-center mt-10 gap-5 mb-10'>
+                <div className='flex flex-col justify-center items-center mt-30 gap-5 mb-10'>
                     <div className='flex w-[80vw] gap-4 justify-center'>
                         <input
                             type="text"
@@ -106,31 +106,33 @@ const Home = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                    <tr key={oneUser._id} className="hover:bg-gray-50">
+                                    {oneUser.map((item) => (
+                                        <tr key={item._id} className="hover:bg-gray-50">
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="text-sm font-medium text-gray-900">{oneUser.name}</div>
+                                            <div className="text-sm font-medium text-gray-900">{item.name}</div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                {oneUser.disease}
+                                                {item.disease}
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {oneUser.medicine}
+                                            {item.medicine}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {oneUser.price}
+                                            {item.price}
                                         </td>
                                         <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                                            {new Date(oneUser.date).toLocaleDateString()}
+                                            {new Date(item.date).toLocaleDateString()}
                                         </td>
                                         <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                                            {oneUser.phoneNumber}
+                                            {item.phoneNumber}
                                         </td>
                                         <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                                            {oneUser.address}
+                                            {item.address}
                                         </td>
                                     </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
