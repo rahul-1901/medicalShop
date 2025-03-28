@@ -48,7 +48,7 @@ const Home = () => {
             const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/createUser`, newUser);
             fetchUser();
             setFormOpen(false);
-            console.log("vdv")
+            window.location.reload();
         } catch (error) {
             console.log("Error adding...")
         }
