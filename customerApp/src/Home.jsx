@@ -9,6 +9,16 @@ const Home = () => {
     })
     const [oneUser, setOneUser] = useState({});
     const [searchOn, setSearchOn] = useState(false);
+    const [newUser, setNewUser] = useState({
+        name: "",
+        medicine: "",
+        phoneNumber: "",
+        disease: "",
+        address: "",
+        date: "",
+        price: ""
+    })
+    const [formOpen, setFormOpen] = useState(false);
 
     const fetchUser = async () => {
         try {
@@ -30,6 +40,17 @@ const Home = () => {
             }, 500);
         } catch (error) {
             console.log("Error...")
+        }
+    }
+
+    const createUser = async () => {
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/createUser`, newUser);
+            fetchUser();
+            setFormOpen(false);
+            console.log("vdv")
+        } catch (error) {
+            console.log("Error adding...")
         }
     }
 
@@ -70,8 +91,17 @@ const Home = () => {
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Prescribed Medicine
                                         </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Price
+                                        </th>
                                         <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                                             Date
+                                        </th>
+                                        <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                                            Phone Number
+                                        </th>
+                                        <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                                            Address
                                         </th>
                                     </tr>
                                 </thead>
@@ -88,8 +118,17 @@ const Home = () => {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {oneUser.medicine}
                                         </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {oneUser.price}
+                                        </td>
                                         <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
                                             {new Date(oneUser.date).toLocaleDateString()}
+                                        </td>
+                                        <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                                            {oneUser.phoneNumber}
+                                        </td>
+                                        <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                                            {oneUser.address}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -117,8 +156,17 @@ const Home = () => {
                                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Prescribed Medicine
                                         </th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Price
+                                        </th>
                                         <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                                             Date
+                                        </th>
+                                        <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                                            Phone Number
+                                        </th>
+                                        <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                                            Address
                                         </th>
                                     </tr>
                                 </thead>
@@ -136,8 +184,17 @@ const Home = () => {
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                 {item.medicine}
                                             </td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                {item.price}
+                                            </td>
                                             <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
                                                 {new Date(item.date).toLocaleDateString()}
+                                            </td>
+                                            <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                                                {item.phoneNumber}
+                                            </td>
+                                            <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                                                {item.address}
                                             </td>
                                         </tr>
                                     ))}
@@ -145,6 +202,28 @@ const Home = () => {
                             </table>
                         </div>
                     </div>
+
+                    {formOpen ? (
+                        <form className='bg-white rounded-lg shadow w-[90vw] p-5 mt-5'>
+                            <h2 className="text-xl font-semibold text-gray-800">Customer Details</h2>
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
+                                <input required type="text" name="name" placeholder='Customer Name' onChange={(e) => setNewUser({ ...newUser, name: e.target.value })} className='p-2 border rounded-md' />
+                                <input required type="text" name="disease" placeholder='Condition' onChange={(e) => setNewUser({ ...newUser, disease: e.target.value })} className='p-2 border rounded-md' />
+                                <input required type="text" name="medicine" placeholder='Prescribed Medicine'  onChange={(e) => setNewUser({ ...newUser, medicine: e.target.value })} className='p-2 border rounded-md' />
+                                <input required type="date" name="date"  onChange={(e) => setNewUser({ ...newUser, date: e.target.value })} className='p-2 border rounded-md' />
+                                <input required type="tel" name="phoneNumber" placeholder='Phone Number' onChange={(e) => setNewUser({ ...newUser, phoneNumber: e.target.value })} className='p-2 border rounded-md' />
+                                <input required type="text" name="address" placeholder='Address' onChange={(e) => setNewUser({ ...newUser, address: e.target.value })} className='p-2 border rounded-md' />
+                                <input required type="text" name="price" placeholder='Price' onChange={(e) => setNewUser({ ...newUser, price: e.target.value })} className='p-2 border rounded-md' />
+                            </div>
+                            <button onClick={createUser} className='bg-blue-500 text-white mt-4 px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer'>Add Customer</button>
+                        </form>
+                    ) : (
+                        <div></div>
+                    )}
+
+                    {formOpen ? (<div></div>) : (<div className='addButton' onClick={() => { setFormOpen(true); console.log("open") }}>
+                        <button className='bg-blue-300 rounded-md py-2 px-3 cursor-pointer hover:bg-blue-400 transition duration-200'>Customer Add On</button>
+                    </div>)}
                 </div>
             </div>
         </>

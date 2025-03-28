@@ -45,3 +45,27 @@ export const searchedUser = async (req, res) => {
         })
     }
 }
+
+export const addCustomer = async (req, res) => {
+    try {
+        const {name, phoneNumber, address, disease, medicine, date, price} = req.body;
+
+        const user = await Usermodel.create({
+            name,
+            address,
+            phoneNumber,
+            medicine,
+            disease,
+            date,
+            price
+        })
+        return res.status(201).json({
+            message: `User named: ${user.name} created...`
+        })
+    } catch (error) {
+        return res.status(501).json({
+            message: "Error creating user...",
+            success: false
+        })
+    }
+}

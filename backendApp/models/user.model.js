@@ -12,6 +12,22 @@ const UserSchema = new mongoose.Schema({
     medicine: {
         type: String,
         required: true
+    },
+    phoneNumber: {
+        type: Number,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    price: {
+        type: String, 
+        required: true
     }
 })
 
