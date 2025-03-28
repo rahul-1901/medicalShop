@@ -26,7 +26,7 @@ export const searchedUser = async (req, res) => {
     try {
         const name = req.body.name;
 
-        const user = await Usermodel.findOne({
+        const user = await Usermodel.find({
             name  
         })
 
