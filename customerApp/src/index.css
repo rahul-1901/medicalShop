@@ -3,4 +3,54 @@
 body {
     @apply min-h-screen bg-gradient-to-br from-blue-50 to-blue-100;
 }
-  
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+
+@keyframes spin-out {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: rotate(720deg) scale(0);
+    }
+}
+
+@keyframes scale-out {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.animate-disappear {
+    animation: disappear 1s ease-in-out forwards;
+}
+
+.animate-spin-out {
+    animation: spin-out 1s ease-in-out forwards;
+}
+
+.animate-scale-out {
+    animation: scale-out 1s ease-in-out forwards;
+}

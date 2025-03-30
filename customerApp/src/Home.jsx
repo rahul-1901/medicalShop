@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Users } from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Users } from 'lucide-react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Navbar';
+import Loader from './Loader';
 
 const Home = () => {
     const [userInfo, setUserInfo] = useState([]);
@@ -23,6 +24,7 @@ const Home = () => {
     })
     const [userLogin, setUserLogin] = useState(false);
     const [formOpen, setFormOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchUser = async () => {
         const token = localStorage.getItem("userToken")
@@ -89,6 +91,7 @@ const Home = () => {
     return (
         <>
             <Navbar setUserLogin={setUserLogin} />
+            {isLoading && <Loader onLoadingComplete={() => setIsLoading(false)} />}
             {userLogin ? (
                 <div className=''>
                     <div className='flex flex-col justify-center items-center mt-30 gap-5 mb-10'>

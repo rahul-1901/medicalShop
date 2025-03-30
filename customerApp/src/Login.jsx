@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useGoogleLogin } from '@react-oauth/google';
+import Loader from './Loader';
 
 const Login = () => {
-
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const googleAuth = (code) => axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/auth/google?code=${code}`)
@@ -39,6 +40,7 @@ const Login = () => {
 
   return (
     <>
+      {isLoading && <Loader onLoadingComplete={() => setIsLoading(false)} />}
       <div className="flex flex-col justify-center items-center h-screen">
         <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col items-center gap-5 w-80">
           <h2 className="text-lg font-semibold text-gray-700">Sign in with Google</h2>
