@@ -248,7 +248,7 @@ const Home = () => {
                                     <input required type="text" name="disease" placeholder='Condition' onChange={(e) => setNewUser({ ...newUser, disease: e.target.value })} className='p-2 border rounded-md' />
                                     <input required type="text" name="medicine" placeholder='Prescribed Medicine' onChange={(e) => setNewUser({ ...newUser, medicine: e.target.value })} className='p-2 border rounded-md' />
                                     <input required type="date" name="date" onChange={(e) => setNewUser({ ...newUser, date: e.target.value })} className='p-2 border rounded-md' />
-                                    <input required type="tel" name="phoneNumber" placeholder='Phone Number' onChange={(e) => setNewUser({ ...newUser, phoneNumber: e.target.value })} className='p-2 border rounded-md' />
+                                    <input type="tel" name="phoneNumber" placeholder='Phone Number' onChange={(e) => setNewUser({ ...newUser, phoneNumber: e.target.value })} className='p-2 border rounded-md' />
                                     <input required type="text" name="address" placeholder='Address' onChange={(e) => setNewUser({ ...newUser, address: e.target.value })} className='p-2 border rounded-md' />
                                     <input type="text" name="price" placeholder='Price' onChange={(e) => setNewUser({ ...newUser, price: e.target.value })} className='p-2 border rounded-md' />
                                 </div>
