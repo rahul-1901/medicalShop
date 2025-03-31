@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
-import webLogo from './assets/webLogo.png'
+import webLogo from './assets/webLogo.png';
 
 const Loader = ({ onLoadingComplete }) => {
     const [isDisappearing, setIsDisappearing] = useState(false);

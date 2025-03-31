@@ -22,7 +22,7 @@ const Login = () => {
         setTimeout(() => {
           navigate("/")
         }, 2000)
-        console.log(result.data.user);
+        // console.log(result.data.user);
         localStorage.setItem("userToken", token);
         localStorage.setItem("userEmail", email);
         // console.log(localStorage)
